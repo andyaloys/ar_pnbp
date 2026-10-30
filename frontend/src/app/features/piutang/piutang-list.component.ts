@@ -374,7 +374,10 @@ export class PiutangListComponent implements OnInit {
     if (this.searchKeyword) filters.search = this.searchKeyword;
 
     this.api.getPiutangs(1, 50, filters).subscribe(res => {
-      if (res.success) this.piutangs.set(res.data);
+      if (res.success) {
+        const rawItems = res.data?.items ?? (Array.isArray(res.data) ? res.data : []);
+        this.piutangs.set(rawItems);
+      }
     });
   }
 

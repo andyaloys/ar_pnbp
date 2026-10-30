@@ -92,8 +92,23 @@ try
         Console.WriteLine($"[OK] Successfully executed {sampleCount} sample transaction queries.");
     }
 
+    string sql05Path = Path.Combine(dbFolder, "05_seed_realistic_ar_data.sql");
+    if (File.Exists(sql05Path))
+    {
+        Console.WriteLine("\n[5/5] Executing 05_seed_realistic_ar_data.sql...");
+        string sql05 = File.ReadAllText(sql05Path);
+        int extraCount = 0;
+        foreach (var stmt in SplitStatements(sql05))
+        {
+            using var cmd = new MySqlCommand(stmt, connection);
+            cmd.ExecuteNonQuery();
+            extraCount++;
+        }
+        Console.WriteLine($"[OK] Successfully executed {extraCount} realistic sample queries.");
+    }
+
     // Verification
-    Console.WriteLine("\n[4/4] === VERIFICATION: TABLES IN pnbp_ar ===");
+    Console.WriteLine("\n=== VERIFICATION: TABLES IN pnbp_ar ===");
     using (var cmd = new MySqlCommand("SHOW TABLES IN `pnbp_ar`;", connection))
     using (var reader = cmd.ExecuteReader())
     {
@@ -104,39 +119,13 @@ try
         }
     }
 
-    // Verify Satker Count
-    using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM `ar_satker`;", connection))
+    // Verify Counts
+    string[] verifyTables = new[] { "ar_satker", "ar_wajib_bayar", "ar_jenis_pnbp", "ar_dokumen_dasar", "ar_kualitas_aging", "ar_piutang", "ar_pembayaran" };
+    foreach (var table in verifyTables)
     {
+        using var cmd = new MySqlCommand($"SELECT COUNT(*) FROM `{table}`;", connection);
         var cnt = cmd.ExecuteScalar();
-        Console.WriteLine($"\n[VERIFIED] ar_satker rows: {cnt}");
-    }
-
-    // Verify Kualitas Aging Count
-    using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM `ar_kualitas_aging`;", connection))
-    {
-        var cnt = cmd.ExecuteScalar();
-        Console.WriteLine($"[VERIFIED] ar_kualitas_aging rows: {cnt}");
-    }
-
-    // Verify Jenis PNBP Count
-    using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM `ar_jenis_pnbp`;", connection))
-    {
-        var cnt = cmd.ExecuteScalar();
-        Console.WriteLine($"[VERIFIED] ar_jenis_pnbp rows: {cnt}");
-    }
-
-    // Verify Dokumen Dasar Count
-    using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM `ar_dokumen_dasar`;", connection))
-    {
-        var cnt = cmd.ExecuteScalar();
-        Console.WriteLine($"[VERIFIED] ar_dokumen_dasar rows: {cnt}");
-    }
-
-    // Verify Sample Wajib Bayar
-    using (var cmd = new MySqlCommand("SELECT COUNT(*) FROM `ar_wajib_bayar`;", connection))
-    {
-        var cnt = cmd.ExecuteScalar();
-        Console.WriteLine($"[VERIFIED] ar_wajib_bayar rows: {cnt}");
+        Console.WriteLine($"[VERIFIED] {table} rows: {cnt}");
     }
 
     Console.WriteLine("\n🎉 [ALL DATABASE TASKS COMPLETED SUCCESSFULLY]");

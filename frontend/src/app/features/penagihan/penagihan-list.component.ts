@@ -174,8 +174,9 @@ export class PenagihanListComponent implements OnInit {
   loadData() {
     this.api.getPiutangs(1, 50, { status: 'AKTIF' }).subscribe(res => {
       if (res.success) {
-        // filter yang sudah jatuh tempo
-        const items = res.data.filter((p: any) => p.saldoPiutang > 0);
+        const rawList = res.data?.items ?? (Array.isArray(res.data) ? res.data : []);
+        // filter yang memiliki saldo piutang > 0
+        const items = rawList.filter((p: any) => p.saldoPiutang > 0);
         this.piutangs.set(items);
       }
     });
