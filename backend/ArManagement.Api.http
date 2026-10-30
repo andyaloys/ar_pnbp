@@ -1,0 +1,6 @@
+@ArManagement.Api_HostAddress = http://localhost:5208
+
+GET {{ArManagement.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
