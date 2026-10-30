@@ -34,7 +34,7 @@ import { ApiService } from '../../core/services/api.service';
 
         <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
           <table class="w-full text-left text-xs text-slate-600 dark:text-slate-300">
-            <thead class="bg-slate-50 dark:bg-slate-950 text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-200 dark:border-slate-800">
+            <thead class="table-header-theme shadow-xs">
               <tr>
                 <th class="px-4 py-3">No. Register Piutang</th>
                 <th class="px-4 py-3">Debitur</th>

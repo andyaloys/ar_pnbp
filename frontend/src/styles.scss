@@ -107,3 +107,29 @@ html.dark .badge-macet {
   background: rgba(244, 63, 94, 0.18);
   color: #fb7185;
 }
+
+/* Custom Executive Table Header */
+.table-header-theme {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  color: #ffffff !important;
+  border-bottom: 2px solid #0284c7;
+
+  th {
+    color: #f8fafc !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.7rem;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+}
+
+html.dark .table-header-theme {
+  background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
+  border-bottom: 2px solid #38bdf8;
+
+  th {
+    color: #f1f5f9 !important;
+  }
+}
