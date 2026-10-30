@@ -81,6 +81,15 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
             <span class="text-xs">Master Data & Satker</span>
           }
         </a>
+
+        <a routerLink="/users" 
+           routerLinkActive="bg-indigo-600/20 text-sky-400 border-l-4 border-sky-400 font-medium" 
+           class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition group">
+          <i class="pi pi-users text-lg group-hover:scale-110 transition"></i>
+          @if (!collapsed()) {
+            <span class="text-xs">Manajemen Pengguna</span>
+          }
+        </a>
       </nav>
 
       <!-- Footer Info -->

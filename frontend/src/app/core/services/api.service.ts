@@ -111,4 +111,33 @@ export class ApiService {
     if (kodeSatker) params = params.set('kodeSatker', kodeSatker);
     return this.http.get(`${this.baseUrl}/sakti/mutasi-piutang`, { params });
   }
+
+  // User Management API (RBAC)
+  getUsers(role?: string, satkerId?: number, search?: string): Observable<any> {
+    let params = new HttpParams();
+    if (role) params = params.set('role', role);
+    if (satkerId) params = params.set('satkerId', satkerId);
+    if (search) params = params.set('search', search);
+    return this.http.get(`${this.baseUrl}/users`, { params });
+  }
+
+  getUserById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/${id}`);
+  }
+
+  getRoles(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/users/roles`);
+  }
+
+  createUser(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/users`, data);
+  }
+
+  updateUser(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/users/${id}`, data);
+  }
+
+  toggleUserStatus(id: number): Observable<any> {
+    return this.http.patch(`${this.baseUrl}/users/${id}/toggle-status`, {});
+  }
 }

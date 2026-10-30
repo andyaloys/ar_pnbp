@@ -24,6 +24,8 @@ namespace ArManagement.Api.Data
         public DbSet<ArSnapshotPeriodik> SnapshotPeriodiks { get; set; } = null!;
         public DbSet<ArSaktiExportLog> SaktiExportLogs { get; set; } = null!;
         public DbSet<ArAuditLog> AuditLogs { get; set; } = null!;
+        public DbSet<ArRole> Roles { get; set; } = null!;
+        public DbSet<ArUser> Users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

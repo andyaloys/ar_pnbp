@@ -95,7 +95,7 @@ try
     string sql05Path = Path.Combine(dbFolder, "05_seed_realistic_ar_data.sql");
     if (File.Exists(sql05Path))
     {
-        Console.WriteLine("\n[5/5] Executing 05_seed_realistic_ar_data.sql...");
+        Console.WriteLine("\n[5/6] Executing 05_seed_realistic_ar_data.sql...");
         string sql05 = File.ReadAllText(sql05Path);
         int extraCount = 0;
         foreach (var stmt in SplitStatements(sql05))
@@ -105,6 +105,21 @@ try
             extraCount++;
         }
         Console.WriteLine($"[OK] Successfully executed {extraCount} realistic sample queries.");
+    }
+
+    string sql06Path = Path.Combine(dbFolder, "06_create_users_tables.sql");
+    if (File.Exists(sql06Path))
+    {
+        Console.WriteLine("\n[6/6] Executing 06_create_users_tables.sql...");
+        string sql06 = File.ReadAllText(sql06Path);
+        int userQueries = 0;
+        foreach (var stmt in SplitStatements(sql06))
+        {
+            using var cmd = new MySqlCommand(stmt, connection);
+            cmd.ExecuteNonQuery();
+            userQueries++;
+        }
+        Console.WriteLine($"[OK] Successfully executed {userQueries} user management queries.");
     }
 
     // Verification
@@ -120,7 +135,7 @@ try
     }
 
     // Verify Counts
-    string[] verifyTables = new[] { "ar_satker", "ar_wajib_bayar", "ar_jenis_pnbp", "ar_dokumen_dasar", "ar_kualitas_aging", "ar_piutang", "ar_pembayaran" };
+    string[] verifyTables = new[] { "ar_satker", "ar_wajib_bayar", "ar_jenis_pnbp", "ar_dokumen_dasar", "ar_kualitas_aging", "ar_piutang", "ar_pembayaran", "ar_roles", "ar_users" };
     foreach (var table in verifyTables)
     {
         using var cmd = new MySqlCommand($"SELECT COUNT(*) FROM `{table}`;", connection);

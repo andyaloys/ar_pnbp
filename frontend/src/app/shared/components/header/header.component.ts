@@ -2,6 +2,7 @@ import { Component, input, output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../core/services/api.service';
 import { ThemeService } from '../../../core/services/theme.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -50,15 +51,32 @@ import { ThemeService } from '../../../core/services/theme.service';
 
         <div class="h-6 w-px bg-slate-200 dark:bg-slate-800"></div>
 
-        <!-- User Profile Pill -->
+        <!-- User Profile Pill & Logout -->
         <div class="flex items-center gap-3 pl-2">
-          <div class="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-sky-600 dark:text-sky-400 font-bold text-xs shadow-inner">
-            KLH
+          <div class="w-9 h-9 rounded-full bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-800 flex items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold text-xs shadow-inner">
+            {{ (authService.currentUser()?.fullName?.charAt(0) || 'U').toUpperCase() }}
           </div>
           <div class="hidden lg:flex flex-col text-left">
-            <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">Pengelola PNBP Pusat</span>
-            <span class="text-[10px] text-amber-600 dark:text-amber-400 font-medium">Settama • Biro Renkeu</span>
+            <span class="text-xs font-semibold text-slate-800 dark:text-slate-200">
+              {{ authService.currentUser()?.fullName || 'Pengguna Sistem' }}
+            </span>
+            <div class="flex items-center gap-1.5">
+              <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">
+                {{ authService.currentUser()?.roleName || 'Pegawai' }}
+              </span>
+              @if (authService.currentUser()?.kodeSatker) {
+                <span class="text-[9px] text-slate-400 font-mono">({{ authService.currentUser()?.kodeSatker }})</span>
+              }
+            </div>
           </div>
+
+          <!-- Logout Button -->
+          <button
+            (click)="authService.logout()"
+            class="p-2 rounded-lg text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors ml-1"
+            title="Keluar / Logout">
+            <i class="pi pi-sign-out text-base"></i>
+          </button>
         </div>
 
       </div>
@@ -71,6 +89,7 @@ export class HeaderComponent {
   toggleSidebar = output<void>();
 
   themeService = inject(ThemeService);
+  authService = inject(AuthService);
   private apiService = inject(ApiService);
   isRecalculating = false;
 

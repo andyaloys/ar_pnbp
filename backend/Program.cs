@@ -24,6 +24,8 @@ builder.Services.AddScoped<ArManagement.Api.Services.Aging.IAgingEngineService, 
 builder.Services.AddScoped<ArManagement.Api.Services.Piutang.IPiutangService, ArManagement.Api.Services.Piutang.PiutangService>();
 builder.Services.AddScoped<ArManagement.Api.Services.Dashboard.IDashboardService, ArManagement.Api.Services.Dashboard.DashboardService>();
 builder.Services.AddScoped<ArManagement.Api.Services.Sakti.ISaktiIntegrationService, ArManagement.Api.Services.Sakti.SaktiIntegrationService>();
+builder.Services.AddScoped<ArManagement.Api.Services.Auth.IAuthService, ArManagement.Api.Services.Auth.AuthService>();
+builder.Services.AddScoped<ArManagement.Api.Services.Users.IUserService, ArManagement.Api.Services.Users.UserService>();
 
 // 3. CORS Policy for Angular Frontend
 builder.Services.AddCors(options =>
