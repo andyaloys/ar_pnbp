@@ -11,30 +11,30 @@ import { ApiService } from '../../core/services/api.service';
     <div class="space-y-6">
       
       <!-- Header -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-slate-800">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <h1 class="text-2xl font-bold text-white tracking-tight">Monitoring Penagihan & Surat Peringatan</h1>
-          <p class="text-xs text-slate-400 mt-1">
+          <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Monitoring Penagihan & Surat Peringatan</h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Penatausahaan Surat Tagihan I (SP I), Surat Peringatan II (SP II), Surat Peringatan III (SP III), hingga pelimpahan berkas PUPN
           </p>
         </div>
       </div>
 
       <!-- Piutang Memerlukan Tindakan Penagihan -->
-      <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 shadow-xl space-y-4">
+      <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-4">
         <div class="flex items-center justify-between">
           <div>
-            <h2 class="text-base font-bold text-white">Daftar Piutang Jatuh Tempo Memerlukan Penagihan</h2>
-            <p class="text-xs text-slate-400">Berkas piutang yang telah lewat jatuh tempo dan harus diterbitkan tindakan penagihan berjenjang</p>
+            <h2 class="text-base font-bold text-slate-900 dark:text-white">Daftar Piutang Jatuh Tempo Memerlukan Penagihan</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Berkas piutang yang telah lewat jatuh tempo dan harus diterbitkan tindakan penagihan berjenjang</p>
           </div>
-          <span class="text-xs font-semibold px-2.5 py-1 rounded bg-rose-500/15 text-rose-400 border border-rose-500/30">
+          <span class="text-xs font-semibold px-2.5 py-1 rounded bg-rose-50 dark:bg-rose-500/15 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-500/30">
             Perhatian Khusus
           </span>
         </div>
 
-        <div class="overflow-x-auto rounded-xl border border-slate-800">
-          <table class="w-full text-left text-xs text-slate-300">
-            <thead class="bg-slate-950 text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-800">
+        <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+          <table class="w-full text-left text-xs text-slate-600 dark:text-slate-300">
+            <thead class="bg-slate-50 dark:bg-slate-950 text-slate-500 dark:text-slate-400 uppercase text-[10px] tracking-wider border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th class="px-4 py-3">No. Register Piutang</th>
                 <th class="px-4 py-3">Debitur</th>
@@ -45,16 +45,16 @@ import { ApiService } from '../../core/services/api.service';
                 <th class="px-4 py-3 text-center">Tindakan</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-slate-800/60">
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/60">
               @for (item of piutangs(); track item.id) {
-                <tr class="hover:bg-slate-850/50 transition">
-                  <td class="px-4 py-3 font-mono font-medium text-sky-400">{{ item.nomorRegistrasiPiutang }}</td>
-                  <td class="px-4 py-3 font-semibold text-white">{{ item.wajibBayar?.namaWajibBayar }}</td>
-                  <td class="px-4 py-3 text-slate-400">{{ item.satker?.namaSatker }}</td>
-                  <td class="px-4 py-3 text-right font-bold text-amber-400">Rp {{ item.saldoPiutang | number:'1.0-0' }}</td>
-                  <td class="px-4 py-3 text-center font-mono text-rose-400 font-semibold">{{ item.umurHari }} hari</td>
+                <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-850/50 transition">
+                  <td class="px-4 py-3 font-mono font-medium text-sky-600 dark:text-sky-400">{{ item.nomorRegistrasiPiutang }}</td>
+                  <td class="px-4 py-3 font-semibold text-slate-900 dark:text-white">{{ item.wajibBayar?.namaWajibBayar }}</td>
+                  <td class="px-4 py-3 text-slate-600 dark:text-slate-400">{{ item.satker?.namaSatker }}</td>
+                  <td class="px-4 py-3 text-right font-bold text-amber-600 dark:text-amber-400">Rp {{ item.saldoPiutang | number:'1.0-0' }}</td>
+                  <td class="px-4 py-3 text-center font-mono text-rose-600 dark:text-rose-400 font-semibold">{{ item.umurHari }} hari</td>
                   <td class="px-4 py-3 text-center">
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-sky-300 border border-slate-700">
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-sky-700 dark:text-sky-300 border border-slate-200 dark:border-slate-700">
                       {{ item.statusPenagihan }}
                     </span>
                   </td>
@@ -74,26 +74,26 @@ import { ApiService } from '../../core/services/api.service';
 
       <!-- Modal Terbitkan Surat Penagihan -->
       @if (showIssueModal) {
-        <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm">
-          <div class="w-full max-w-lg rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-6 space-y-4">
-            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-              <h3 class="text-base font-bold text-white">Penerbitan Surat Tagihan / Penagihan</h3>
-              <button (click)="showIssueModal = false" class="text-slate-500 hover:text-white">
+        <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 dark:bg-slate-950/80 backdrop-blur-xs">
+          <div class="w-full max-w-lg rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-6 space-y-4 text-slate-900 dark:text-white">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+              <h3 class="text-base font-bold">Penerbitan Surat Tagihan / Penagihan</h3>
+              <button (click)="showIssueModal = false" class="text-slate-400 hover:text-slate-700 dark:hover:text-white">
                 <i class="pi pi-times"></i>
               </button>
             </div>
 
             <div class="space-y-3 text-xs">
-              <div class="p-3 rounded-lg bg-slate-950 border border-slate-800">
-                <p class="text-slate-400 font-mono text-[11px]">{{ selectedPiutang?.nomorRegistrasiPiutang }}</p>
-                <p class="font-bold text-white mt-0.5">{{ selectedPiutang?.wajibBayar?.namaWajibBayar }}</p>
-                <p class="text-amber-400 font-semibold mt-1">Sisa Piutang: Rp {{ selectedPiutang?.saldoPiutang | number:'1.0-0' }}</p>
+              <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                <p class="text-slate-500 dark:text-slate-400 font-mono text-[11px]">{{ selectedPiutang?.nomorRegistrasiPiutang }}</p>
+                <p class="font-bold text-slate-900 dark:text-white mt-0.5">{{ selectedPiutang?.wajibBayar?.namaWajibBayar }}</p>
+                <p class="text-amber-600 dark:text-amber-400 font-semibold mt-1">Sisa Piutang: Rp {{ selectedPiutang?.saldoPiutang | number:'1.0-0' }}</p>
               </div>
 
               <div>
-                <label class="block text-slate-400 mb-1">Jenis Tindakan / Tingkat Surat *</label>
+                <label class="block text-slate-600 dark:text-slate-400 mb-1">Jenis Tindakan / Tingkat Surat *</label>
                 <select [(ngModel)]="penagihanForm.jenisTindakan" 
-                        class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white font-semibold focus:outline-none focus:border-indigo-500">
+                        class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white font-semibold focus:outline-none focus:border-indigo-500">
                   <option value="SP1">Surat Tagihan I (SP I)</option>
                   <option value="SP2">Surat Peringatan II (SP II)</option>
                   <option value="SP3">Surat Peringatan III (SP III)</option>
@@ -103,42 +103,42 @@ import { ApiService } from '../../core/services/api.service';
               </div>
 
               <div>
-                <label class="block text-slate-400 mb-1">Nomor Surat Resmi *</label>
+                <label class="block text-slate-600 dark:text-slate-400 mb-1">Nomor Surat Resmi *</label>
                 <input type="text" [(ngModel)]="penagihanForm.nomorSurat" placeholder="Misal: S.045/SETTAMA/ROKEU/AR/10/2026"
-                       class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-indigo-500">
+                       class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500">
               </div>
 
               <div class="grid grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-slate-400 mb-1">Tanggal Surat</label>
+                  <label class="block text-slate-600 dark:text-slate-400 mb-1">Tanggal Surat</label>
                   <input type="date" [(ngModel)]="penagihanForm.tanggalSurat" 
-                         class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-indigo-500">
+                         class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500">
                 </div>
                 <div>
-                  <label class="block text-slate-400 mb-1">Batas Waktu Respon</label>
+                  <label class="block text-slate-600 dark:text-slate-400 mb-1">Batas Waktu Respon</label>
                   <input type="date" [(ngModel)]="penagihanForm.tanggalJatuhTempoSurat" 
-                         class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-indigo-500">
+                         class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500">
                 </div>
               </div>
 
               <div>
-                <label class="block text-slate-400 mb-1">Pejabat Penandatangan</label>
+                <label class="block text-slate-600 dark:text-slate-400 mb-1">Pejabat Penandatangan</label>
                 <input type="text" [(ngModel)]="penagihanForm.pejabatPenandatangan" 
-                       class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-indigo-500">
+                       class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500">
               </div>
 
               <div>
-                <label class="block text-slate-400 mb-1">Perihal Surat</label>
+                <label class="block text-slate-600 dark:text-slate-400 mb-1">Perihal Surat</label>
                 <input type="text" [(ngModel)]="penagihanForm.perihal" 
-                       class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-lg text-white focus:outline-none focus:border-indigo-500">
+                       class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500">
               </div>
             </div>
 
-            <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-              <button (click)="showIssueModal = false" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700">
+            <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+              <button (click)="showIssueModal = false" class="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-700">
                 Batal
               </button>
-              <button (click)="submitIssuePenagihan()" class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-500 shadow-lg shadow-indigo-500/20">
+              <button (click)="submitIssuePenagihan()" class="px-4 py-2 rounded-lg bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-500 shadow-sm">
                 Terbitkan & Simpan
               </button>
             </div>

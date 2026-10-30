@@ -14,7 +14,7 @@ import { SidebarComponent } from '../../shared/components/sidebar/sidebar.compon
     SidebarComponent
   ],
   template: `
-    <div class="flex h-screen bg-slate-950 text-slate-100 overflow-hidden">
+    <div class="flex h-screen bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 overflow-hidden transition-colors duration-200">
       <!-- Sidebar -->
       <app-sidebar 
         [collapsed]="sidebarCollapsed()" 
@@ -29,7 +29,7 @@ import { SidebarComponent } from '../../shared/components/sidebar/sidebar.compon
         />
         
         <!-- Content Area -->
-        <main class="flex-1 overflow-y-auto p-6 bg-slate-900/60">
+        <main class="flex-1 overflow-y-auto p-6 bg-slate-100/90 dark:bg-slate-900/60 transition-colors duration-200">
           <div class="max-w-7xl mx-auto space-y-6">
             <router-outlet />
           </div>
