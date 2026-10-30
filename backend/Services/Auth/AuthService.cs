@@ -1,6 +1,9 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using ArManagement.Api.Data;
 using ArManagement.Api.DTOs.Auth;
 using ArManagement.Api.Models;
@@ -10,11 +13,13 @@ namespace ArManagement.Api.Services.Auth;
 public class AuthService : IAuthService
 {
     private readonly ArDbContext _context;
+    private readonly IConfiguration _configuration;
     private readonly ILogger<AuthService> _logger;
 
-    public AuthService(ArDbContext context, ILogger<AuthService> logger)
+    public AuthService(ArDbContext context, IConfiguration configuration, ILogger<AuthService> logger)
     {
         _context = context;
+        _configuration = configuration;
         _logger = logger;
     }
 
@@ -43,22 +48,23 @@ public class AuthService : IAuthService
 
         if (user == null)
         {
-            _logger.LogWarning("Percobaan login gagal: Username '{Username}' tidak ditemukan atau non-aktif", request.Username);
+            _logger.LogWarning("Percobaan login ditolak: Username '{Username}' tidak ditemukan atau non-aktif", request.Username);
             return null;
         }
 
         if (!VerifyPassword(request.Password, user.PasswordHash))
         {
-            _logger.LogWarning("Percobaan login gagal: Password salah untuk user '{Username}'", request.Username);
+            _logger.LogWarning("Percobaan login ditolak: Password salah untuk user '{Username}'", request.Username);
             return null;
         }
 
-        // Update last login
+        // Update waktu login terakhir
         user.LastLoginAt = DateTime.UtcNow;
         await _context.SaveChangesAsync();
 
-        var expiresAt = DateTime.UtcNow.AddHours(12);
-        var token = GenerateSessionToken(user, expiresAt);
+        var expiryHours = _configuration.GetValue<int>("Jwt:ExpiryHours", 12);
+        var expiresAt = DateTime.UtcNow.AddHours(expiryHours);
+        var token = GenerateJwtToken(user, expiresAt);
 
         var userDto = new UserDto
         {
@@ -114,9 +120,46 @@ public class AuthService : IAuthService
         };
     }
 
-    private static string GenerateSessionToken(ArUser user, DateTime expiresAt)
+    private string GenerateJwtToken(ArUser user, DateTime expiresAt)
     {
-        var payload = $"{user.Id}:{user.Username}:{user.RoleId}:{expiresAt.Ticks}";
-        return Convert.ToBase64String(Encoding.UTF8.GetBytes(payload));
+        var secretKey = _configuration["Jwt:Key"] ?? "AR_MANAGEMENT_PNBP_SECRET_KEY_KLH_BPLH_2026_VERY_SECURE";
+        var issuer = _configuration["Jwt:Issuer"] ?? "ArManagementPnbpApi";
+        var audience = _configuration["Jwt:Audience"] ?? "ArManagementPnbpApp";
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+
+        var claims = new List<Claim>
+        {
+            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            new(ClaimTypes.Name, user.Username),
+            new(ClaimTypes.Email, user.Email),
+            new(ClaimTypes.Role, user.Role?.RoleCode ?? "USER"),
+            new("roleName", user.Role?.RoleName ?? "Pengguna"),
+            new("fullName", user.FullName)
+        };
+
+        if (user.SatkerId.HasValue)
+        {
+            claims.Add(new Claim("satkerId", user.SatkerId.Value.ToString()));
+            if (!string.IsNullOrEmpty(user.Satker?.KodeSatker))
+            {
+                claims.Add(new Claim("kodeSatker", user.Satker.KodeSatker));
+            }
+        }
+
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(claims),
+            Expires = expiresAt,
+            Issuer = issuer,
+            Audience = audience,
+            SigningCredentials = credentials
+        };
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return tokenHandler.WriteToken(token);
     }
 }

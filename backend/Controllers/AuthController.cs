@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ArManagement.Api.DTOs.Auth;
 using ArManagement.Api.Services.Auth;
@@ -18,6 +20,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
     {
         if (string.IsNullOrWhiteSpace(request.Username) || string.IsNullOrWhiteSpace(request.Password))
@@ -35,32 +38,23 @@ public class AuthController : ControllerBase
     }
 
     [HttpGet("me")]
-    public async Task<IActionResult> GetCurrentUser([FromHeader(Name = "Authorization")] string? authHeader)
+    [Authorize]
+    public async Task<IActionResult> GetCurrentUser()
     {
-        if (string.IsNullOrWhiteSpace(authHeader))
+        var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                          ?? User.FindFirst("sub")?.Value;
+
+        if (string.IsNullOrEmpty(userIdClaim) || !long.TryParse(userIdClaim, out var userId))
         {
-            return Unauthorized(new { success = false, message = "Header Authorization tidak ditemukan." });
+            return Unauthorized(new { success = false, message = "Klaim identitas pengguna tidak valid pada token JWT." });
         }
 
-        try
+        var user = await _authService.GetUserByIdAsync(userId);
+        if (user == null || !user.IsActive)
         {
-            var token = authHeader.Replace("Bearer ", "").Trim();
-            var payload = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(token));
-            var parts = payload.Split(':');
-            if (parts.Length >= 4 && long.TryParse(parts[0], out var userId))
-            {
-                var user = await _authService.GetUserByIdAsync(userId);
-                if (user != null && user.IsActive)
-                {
-                    return Ok(new { success = true, data = user });
-                }
-            }
-        }
-        catch
-        {
-            // Invalid token structure
+            return Unauthorized(new { success = false, message = "Pengguna tidak ditemukan atau telah dinonaktifkan." });
         }
 
-        return Unauthorized(new { success = false, message = "Sesi telah berakhir atau tidak valid." });
+        return Ok(new { success = true, data = user });
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ArManagement.Api.Data;
@@ -5,6 +6,7 @@ using ArManagement.Api.Models;
 
 namespace ArManagement.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class MasterDataController : ControllerBase

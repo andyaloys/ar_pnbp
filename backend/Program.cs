@@ -39,7 +39,36 @@ builder.Services.AddCors(options =>
     });
 });
 
-// 3. Controllers and JSON formatting
+// 4. JWT Authentication & Bearer Token Validation
+var jwtSecretKey = builder.Configuration["Jwt:Key"] ?? "AR_MANAGEMENT_PNBP_SECRET_KEY_KLH_BPLH_2026_VERY_SECURE";
+var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "ArManagementPnbpApi";
+var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "ArManagementPnbpApp";
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(jwtSecretKey)),
+        ValidateIssuer = true,
+        ValidIssuer = jwtIssuer,
+        ValidateAudience = true,
+        ValidAudience = jwtAudience,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero
+    };
+});
+
+builder.Services.AddAuthorization();
+
+// 5. Controllers and JSON formatting
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {

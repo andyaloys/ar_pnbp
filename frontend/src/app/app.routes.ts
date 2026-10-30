@@ -8,16 +8,30 @@ import { PenagihanListComponent } from './features/penagihan/penagihan-list.comp
 import { SaktiIntegrationComponent } from './features/sakti/sakti-integration.component';
 import { MasterDataComponent } from './features/master/master-data.component';
 import { UserManagementComponent } from './features/users/user-management.component';
+import { authGuard, guestGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
-  // Public Landing & Login Pages
-  { path: '', component: LandingComponent, pathMatch: 'full', title: 'Portal AR Management PNBP — KLH/BPLH 2026' },
-  { path: 'login', component: LoginComponent, title: 'Masuk Akun — AR Management PNBP' },
+  // 1. Public Landing Page
+  { 
+    path: '', 
+    component: LandingComponent, 
+    pathMatch: 'full', 
+    title: 'Portal AR Management PNBP — KLH/BPLH 2026' 
+  },
 
-  // Admin Workspace
+  // 2. Authentication Login (Dilindungi guestGuard agar yang sudah login langsung ke dashboard)
+  { 
+    path: 'login', 
+    component: LoginComponent, 
+    canActivate: [guestGuard],
+    title: 'Masuk Akun — AR Management PNBP' 
+  },
+
+  // 3. Admin Workspace Terproteksi (Dilindungi authGuard secara menyeluruh)
   {
     path: '',
     component: AdminLayoutComponent,
+    canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent, title: 'Dashboard Eksekutif Piutang — AR PNBP' },
       { path: 'piutang', component: PiutangListComponent, title: 'Buku Pembantu Piutang — AR PNBP' },
@@ -27,5 +41,7 @@ export const routes: Routes = [
       { path: 'users', component: UserManagementComponent, title: 'Manajemen Pengguna & RBAC — AR PNBP' }
     ]
   },
+
+  // Wildcard fallback
   { path: '**', redirectTo: '' }
 ];

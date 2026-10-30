@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ArManagement.Api.DTOs.Common;
 using ArManagement.Api.DTOs.Dashboard;
@@ -6,6 +7,7 @@ using ArManagement.Api.Services.Dashboard;
 
 namespace ArManagement.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DashboardController : ControllerBase
