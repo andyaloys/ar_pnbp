@@ -49,14 +49,14 @@ import { ThemeService } from '../../core/services/theme.service';
                   routerLink="/dashboard"
                   class="inline-flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-5 py-2.5 rounded-xl text-xs font-bold shadow-lg shadow-emerald-500/30 transition-all hover:scale-105">
                   <i class="pi pi-th-large text-xs"></i>
-                  <span>Ke Dashboard</span>
+                  <span>Buka Dashboard</span>
                 </a>
               } @else {
                 <a
                   routerLink="/login"
-                  class="inline-flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 px-5 py-2.5 rounded-xl text-xs font-bold shadow-lg shadow-emerald-500/30 transition-all hover:scale-105">
-                  <span>Masuk Portal</span>
-                  <i class="pi pi-arrow-right text-xs"></i>
+                  class="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-5 py-2.5 rounded-xl text-xs font-bold backdrop-blur-md transition-all hover:scale-105">
+                  <i class="pi pi-user text-xs text-emerald-400"></i>
+                  <span>Login Akun</span>
                 </a>
               }
             </div>
@@ -83,30 +83,25 @@ import { ThemeService } from '../../core/services/theme.service';
             Platform terpadu penatausahaan buku pembantu piutang, otomasi penuaan kualitas piutang (*Aging Schedule*), serta pengawasan penagihan berjenjang SP1 s/d SP3 pada 15 Satker Prioritas.
           </p>
 
-          <!-- Call To Action Buttons -->
-          <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <!-- Single Focused Call To Action -->
+          <div class="mt-10 flex items-center justify-center">
             @if (authService.isLoggedIn()) {
               <a
                 routerLink="/dashboard"
-                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-7 py-3.5 rounded-xl text-sm shadow-xl shadow-emerald-500/30 transition-all hover:scale-105">
-                <span>Buka Dashboard Eksekutif</span>
+                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl text-sm shadow-xl shadow-emerald-500/30 transition-all hover:scale-105">
+                <i class="pi pi-th-large text-sm"></i>
+                <span>Masuk ke Dashboard Eksekutif</span>
                 <i class="pi pi-arrow-right text-xs"></i>
               </a>
             } @else {
               <a
                 routerLink="/login"
-                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-7 py-3.5 rounded-xl text-sm shadow-xl shadow-emerald-500/30 transition-all hover:scale-105">
+                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl text-sm shadow-xl shadow-emerald-500/30 transition-all hover:scale-105">
+                <i class="pi pi-sign-in text-sm"></i>
                 <span>Masuk ke Sistem</span>
                 <i class="pi pi-arrow-right text-xs"></i>
               </a>
             }
-
-            <a
-              routerLink="/login"
-              class="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3.5 rounded-xl text-sm font-semibold transition-all backdrop-blur-md">
-              <i class="pi pi-lock text-xs text-emerald-400"></i>
-              <span>Akses Pengguna Satker</span>
-            </a>
           </div>
 
           <!-- 3 Glassmorphism Pillars (Menyatu Indah dengan Background lp.jpg) -->
