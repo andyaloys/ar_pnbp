@@ -82,13 +82,8 @@ import { ThemeService } from '../../core/services/theme.service';
             Fondasi Pengelolaan Piutang PNBP Terintegrasi menuju SAKTI
           </p>
 
-          <!-- Badge: TAHAP FONDASI 2026 -->
-          <div class="inline-flex items-center px-5 py-1.5 rounded-full text-xs font-bold bg-sky-950/80 text-sky-300 border border-sky-500/50 backdrop-blur-md my-5 shadow-sm uppercase tracking-wider">
-            TAHAP FONDASI 2026
-          </div>
-
           <!-- Deskripsi Resmi Sesuai Dokumen -->
-          <p class="text-sm sm:text-base text-slate-200 max-w-2xl leading-relaxed drop-shadow font-normal">
+          <p class="mt-5 text-sm sm:text-base text-slate-200 max-w-2xl leading-relaxed drop-shadow font-normal">
             Mengoptimalkan Sistem Informasi PNBP yang sudah ada untuk membangun fondasi pengelolaan piutang PNBP yang terstandar, terintegrasi, dan siap terhubung dengan SAKTI.
           </p>
 

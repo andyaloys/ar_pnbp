@@ -16,7 +16,7 @@ export const routes: Routes = [
     path: '', 
     component: LandingComponent, 
     pathMatch: 'full', 
-    title: 'Portal AR Management PNBP — KLH/BPLH 2026' 
+    title: 'Portal AR Management PNBP — KLH/BPLH' 
   },
 
   // 2. Authentication Login (Dilindungi guestGuard agar yang sudah login langsung ke dashboard)
