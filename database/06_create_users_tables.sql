@@ -45,11 +45,12 @@ INSERT INTO `ar_roles` (`id`, `role_code`, `role_name`, `description`) VALUES
 (4, 'EKSEKUTIF', 'Pimpinan / Eksekutif', 'Menteri, Wamen, Sestama, Karo Keuangan - Pemantauan dashboard eksekutif')
 ON DUPLICATE KEY UPDATE `role_name` = VALUES(`role_name`), `description` = VALUES(`description`);
 
--- 4. Seed Akun Default Pengguna (Password standar demo: 'Admin@12345' menggunakan hash SHA-256)
--- Hash untuk 'Admin@12345' = '6f2cb9dd8f4b65e24e1c3f3fa5bc57982349237f11abceacd45bbcb74d621c25'
+-- 4. Seed Akun Default Pengguna
+-- Hash untuk 'SuperAdmin123!' = 'd357150517d3e65ae84985f7b705ad99fdc38372a22ecea0cecaf8aaf820a249'
+-- Hash untuk 'P@ssw0rd' = 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342'
 INSERT INTO `ar_users` (`id`, `username`, `password_hash`, `full_name`, `email`, `nip`, `role_id`, `satker_id`, `is_active`) VALUES
-(1, 'superadmin', '6f2cb9dd8f4b65e24e1c3f3fa5bc57982349237f11abceacd45bbcb74d621c25', 'Administrator Pusdatin', 'pusdatin.admin@menlhk.go.id', '198501152008121001', 1, 1, TRUE),
-(2, 'admin.pusat', '6f2cb9dd8f4b65e24e1c3f3fa5bc57982349237f11abceacd45bbcb74d621c25', 'Kaur Pengelolaan Piutang PNBP', 'ar.pusat@menlhk.go.id', '198704202010121002', 2, 1, TRUE),
-(3, 'operator.gakkum', '6f2cb9dd8f4b65e24e1c3f3fa5bc57982349237f11abceacd45bbcb74d621c25', 'Petugas Keuangan Balai Gakkum Sumatera', 'keu.gakkum.sm@menlhk.go.id', '199208142015031003', 3, (SELECT id FROM `ar_satker` WHERE `kode_satker` = '1440502' LIMIT 1), TRUE),
-(4, 'pimpinan', '6f2cb9dd8f4b65e24e1c3f3fa5bc57982349237f11abceacd45bbcb74d621c25', 'Kepala Biro Perencanaan & Keuangan', 'karo.keuangan@menlhk.go.id', '197503121998031001', 4, 1, TRUE)
+(1, 'superadmin', 'd357150517d3e65ae84985f7b705ad99fdc38372a22ecea0cecaf8aaf820a249', 'Administrator Pusdatin', 'pusdatin.admin@menlhk.go.id', '198501152008121001', 1, 1, TRUE),
+(2, 'admin.pusat', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'Kaur Pengelolaan Piutang PNBP', 'ar.pusat@menlhk.go.id', '198704202010121002', 2, 1, TRUE),
+(3, 'operator.gakkum', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'Petugas Keuangan Balai Gakkum Sumatera', 'keu.gakkum.sm@menlhk.go.id', '199208142015031003', 3, (SELECT id FROM `ar_satker` WHERE `kode_satker` = '1440502' LIMIT 1), TRUE),
+(4, 'pimpinan', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'Kepala Biro Perencanaan & Keuangan', 'karo.keuangan@menlhk.go.id', '197503121998031001', 4, 1, TRUE)
 ON DUPLICATE KEY UPDATE `password_hash` = VALUES(`password_hash`), `full_name` = VALUES(`full_name`), `email` = VALUES(`email`);

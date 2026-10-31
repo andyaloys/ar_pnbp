@@ -156,7 +156,7 @@ export class LoginComponent {
   router = inject(Router);
 
   username = 'superadmin';
-  password = 'Admin@12345';
+  password = 'SuperAdmin123!';
   showPassword = signal(false);
   isLoading = signal(false);
   errorMessage = signal<string | null>(null);
@@ -183,7 +183,7 @@ export class LoginComponent {
 
   quickLogin(uname: string) {
     this.username = uname;
-    this.password = 'Admin@12345';
+    this.password = (uname === 'superadmin') ? 'SuperAdmin123!' : 'P@ssw0rd';
     this.onSubmit();
   }
 }

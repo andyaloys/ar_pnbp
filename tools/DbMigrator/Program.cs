@@ -122,6 +122,21 @@ try
         Console.WriteLine($"[OK] Successfully executed {userQueries} user management queries.");
     }
 
+    string sql07Path = Path.Combine(dbFolder, "07_update_passwords.sql");
+    if (File.Exists(sql07Path))
+    {
+        Console.WriteLine("\n[7/7] Executing 07_update_passwords.sql...");
+        string sql07 = File.ReadAllText(sql07Path);
+        int pwdQueries = 0;
+        foreach (var stmt in SplitStatements(sql07))
+        {
+            using var cmd = new MySqlCommand(stmt, connection);
+            cmd.ExecuteNonQuery();
+            pwdQueries++;
+        }
+        Console.WriteLine($"[OK] Successfully executed {pwdQueries} password update queries.");
+    }
+
     // Verification
     Console.WriteLine("\n=== VERIFICATION: TABLES IN pnbp_ar ===");
     using (var cmd = new MySqlCommand("SHOW TABLES IN `pnbp_ar`;", connection))
