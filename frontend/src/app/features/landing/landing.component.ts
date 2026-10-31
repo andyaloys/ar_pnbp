@@ -29,7 +29,7 @@ import { ThemeService } from '../../core/services/theme.service';
         <header class="border-b border-white/10 bg-slate-950/30 backdrop-blur-md sticky top-0 z-40">
           <div class="max-w-6xl mx-auto px-6 h-18 flex items-center justify-between">
             
-            <!-- Logo & Brand -->
+            <!-- Logo & Brand (Tanpa kata 2026) -->
             <div class="flex items-center space-x-3.5">
               <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-lg shadow-emerald-500/20 font-bold">
                 <i class="pi pi-shield text-lg text-white"></i>
@@ -39,7 +39,7 @@ import { ThemeService } from '../../core/services/theme.service';
                   AR Management PNBP
                 </span>
                 <span class="text-[11px] text-emerald-400 font-semibold tracking-wider uppercase mt-1">
-                  Kementerian Lingkungan Hidup / BPLH &bull; 2026
+                  Kementerian Lingkungan Hidup / BPLH
                 </span>
               </div>
             </div>
@@ -65,32 +65,32 @@ import { ThemeService } from '../../core/services/theme.service';
           </div>
         </header>
 
-        <!-- Clean Hero Center (Fokus Utama: Judul & Tombol Masuk Sistem) -->
+        <!-- Clean Hero Center -->
         <div class="flex-1 flex flex-col justify-center items-center px-6 py-12 max-w-4xl mx-auto text-center">
           
-          <!-- Badge Institusi -->
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 backdrop-blur-md mb-8 shadow-sm">
+          <!-- Badge Institusi (Tanpa kata PMK) -->
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 backdrop-blur-md mb-6 shadow-sm">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Biro Perencanaan dan Keuangan Settama &bull; PMK 163/PMK.06/2020</span>
+            <span>Biro Perencanaan dan Keuangan Settama</span>
           </div>
 
-          <!-- Main Title -->
-          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.15] drop-shadow-md max-w-3xl">
+          <!-- Main Title (Ukuran Font Lebih Proporsional & Elegan) -->
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-snug drop-shadow-md max-w-2xl">
             Sistem Informasi Penguatan Tata Kelola
             <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-300 bg-clip-text text-transparent">Piutang PNBP</span>
           </h1>
 
           <!-- Crisp Description -->
-          <p class="mt-6 text-base sm:text-lg text-slate-200 max-w-2xl leading-relaxed drop-shadow font-normal">
+          <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-xl leading-relaxed drop-shadow font-normal">
             Platform terpadu penatausahaan buku pembantu piutang, otomasi penuaan kualitas piutang (*Aging Schedule*), serta pengawasan penagihan berjenjang SP1 s/d SP3 pada 15 Satker Prioritas.
           </p>
 
-          <!-- The ONLY Single Button on First Fold -->
-          <div class="mt-10">
+          <!-- Single Button on First Fold -->
+          <div class="mt-8">
             @if (authService.isLoggedIn()) {
               <a
                 routerLink="/dashboard"
-                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-9 py-4 rounded-xl text-sm shadow-xl shadow-emerald-500/30 transition-all hover:scale-105">
+                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl text-sm shadow-xl shadow-emerald-500/30 transition-all hover:scale-105">
                 <i class="pi pi-th-large text-base"></i>
                 <span>Masuk ke Dashboard Eksekutif</span>
                 <i class="pi pi-arrow-right text-xs"></i>
@@ -98,7 +98,7 @@ import { ThemeService } from '../../core/services/theme.service';
             } @else {
               <a
                 routerLink="/login"
-                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-9 py-4 rounded-xl text-sm shadow-xl shadow-emerald-500/30 transition-all hover:scale-105">
+                class="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold px-8 py-3.5 rounded-xl text-sm shadow-xl shadow-emerald-500/30 transition-all hover:scale-105">
                 <i class="pi pi-sign-in text-base"></i>
                 <span>Masuk ke Sistem</span>
                 <i class="pi pi-arrow-right text-xs"></i>
@@ -107,9 +107,9 @@ import { ThemeService } from '../../core/services/theme.service';
           </div>
         </div>
 
-        <!-- Scroll Indicator (Petunjuk Gulir ke Bawah) -->
+        <!-- Scroll Indicator (Bahasa 'SCROLL') -->
         <div class="pb-6 flex flex-col items-center justify-center text-slate-400 text-xs gap-1.5 cursor-pointer animate-pulse" (click)="scrollToInfo()">
-          <span class="text-[11px] tracking-wider uppercase font-medium text-slate-300">Gulir untuk informasi sistem</span>
+          <span class="text-[11px] tracking-wider uppercase font-medium text-slate-300">Scroll untuk informasi sistem</span>
           <i class="pi pi-chevron-down text-emerald-400 text-sm"></i>
         </div>
 
@@ -124,20 +124,20 @@ import { ThemeService } from '../../core/services/theme.service';
           <!-- Section Title -->
           <div class="text-center max-w-3xl mx-auto">
             <span class="text-xs font-bold text-emerald-400 tracking-widest uppercase mb-2 block">Pilar Fungsionalitas</span>
-            <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Arsitektur Penguatan Piutang PNBP 2026</h2>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Arsitektur Penguatan Tata Kelola Piutang PNBP</h2>
             <p class="text-slate-300 text-sm mt-3 leading-relaxed">
               Dikembangkan untuk mewujudkan kepatuhan regulasi perbendaharaan negara, mencegah kadaluarsa piutang, dan memfasilitasi rekonsiliasi data antara Satker Daerah dengan Biro Perencanaan dan Keuangan Pusat.
             </p>
           </div>
 
-          <!-- 3 Kartu Pilar Utama -->
+          <!-- 3 Kartu Pilar Utama (Tanpa kata PMK) -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             <div class="bg-slate-900/60 p-7 rounded-2xl border border-white/10 hover:border-emerald-500/40 transition-all duration-300 hover:translate-y-[-4px] shadow-lg">
               <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-5 border border-emerald-500/30">
                 <i class="pi pi-calendar"></i>
               </div>
-              <h3 class="text-base font-bold text-white mb-2">Aging Engine PMK 163</h3>
+              <h3 class="text-base font-bold text-white mb-2">Aging Engine Otomatis</h3>
               <p class="text-xs text-slate-300 leading-relaxed font-normal">
                 Kalkulasi otomatis kualitas penuaan piutang setiap hari berdasarkan tanggal jatuh tempo dokumen dasar:
                 <span class="block mt-2 font-mono text-[11px] text-emerald-300">
@@ -199,10 +199,10 @@ import { ThemeService } from '../../core/services/theme.service';
             <div class="bg-slate-900/40 p-6 rounded-2xl border border-white/10">
               <h4 class="text-sm font-bold text-white flex items-center gap-2 mb-3">
                 <i class="pi pi-book text-amber-400"></i>
-                <span>Dasar Hukum & Kepatuhan Tata Kelola</span>
+                <span>Kepatuhan Standar Akuntansi Pemerintah</span>
               </h4>
               <p class="text-xs text-slate-300 leading-relaxed">
-                Berlandaskan Peraturan Menteri Keuangan Nomor 163/PMK.06/2020 tentang Pengelolaan Piutang Instansi Pemerintah, Undang-Undang Nomor 9 Tahun 2018 tentang PNBP, Peraturan Pemerintah Tarif Layanan KLH/BPLH, serta Standar Akuntansi Pemerintahan (SAP) Akrual.
+                Berlandaskan Regulasi Pengelolaan Piutang Instansi Pemerintah, Undang-Undang Nomor 9 Tahun 2018 tentang PNBP, Peraturan Pemerintah Tarif Layanan KLH/BPLH, serta Standar Akuntansi Pemerintahan (SAP) Akrual.
               </p>
             </div>
 
@@ -218,7 +218,7 @@ import { ThemeService } from '../../core/services/theme.service';
             <i class="pi pi-shield text-emerald-400 text-sm"></i>
             <span class="text-white font-semibold">Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</span>
           </div>
-          <p>&copy; 2026 Biro Perencanaan dan Keuangan Settama &bull; Republik Indonesia</p>
+          <p>Biro Perencanaan dan Keuangan Settama &bull; Republik Indonesia</p>
         </div>
       </footer>
 
