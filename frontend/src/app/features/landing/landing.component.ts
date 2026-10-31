@@ -64,23 +64,32 @@ import { ThemeService } from '../../core/services/theme.service';
         </header>
 
         <!-- Clean Hero Center -->
-        <div class="flex-1 flex flex-col justify-center items-center px-6 py-12 max-w-4xl mx-auto text-center">
+        <!-- Clean Hero Center (Sesuai Dokumen Resmi) -->
+        <div class="flex-1 flex flex-col justify-center items-center px-6 py-10 max-w-4xl mx-auto text-center">
           
-          <!-- Badge Institusi (Tanpa kata PMK) -->
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 backdrop-blur-md mb-6 shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Biro Perencanaan dan Keuangan Settama</span>
+          <!-- Label Atas: GAMBARAN SISTEM -->
+          <div class="text-xs sm:text-sm font-extrabold tracking-widest text-emerald-400 uppercase mb-2">
+            GAMBARAN SISTEM
           </div>
 
-          <!-- Main Title (Ukuran Font Lebih Proporsional & Elegan) -->
-          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white leading-snug drop-shadow-md max-w-2xl">
-            Sistem Informasi Penguatan Tata Kelola
-            <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-sky-300 bg-clip-text text-transparent">Piutang PNBP</span>
+          <!-- Main Title: AR MANAGEMENT SYSTEM PNBP -->
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight drop-shadow-lg max-w-3xl">
+            AR MANAGEMENT SYSTEM PNBP
           </h1>
 
-          <!-- Crisp Description -->
-          <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-xl leading-relaxed drop-shadow font-normal">
-            Platform terpadu penatausahaan buku pembantu piutang, otomasi penuaan kualitas piutang (*Aging Schedule*), serta pengawasan penagihan berjenjang SP1 s/d SP3 pada 15 Satker Prioritas.
+          <!-- Tagline Miring -->
+          <p class="mt-2 text-base sm:text-lg italic font-medium text-emerald-200/90 tracking-wide drop-shadow">
+            Fondasi Pengelolaan Piutang PNBP Terintegrasi menuju SAKTI
+          </p>
+
+          <!-- Badge: TAHAP FONDASI 2026 -->
+          <div class="inline-flex items-center px-5 py-1.5 rounded-full text-xs font-bold bg-sky-950/80 text-sky-300 border border-sky-500/50 backdrop-blur-md my-5 shadow-sm uppercase tracking-wider">
+            TAHAP FONDASI 2026
+          </div>
+
+          <!-- Deskripsi Resmi Sesuai Dokumen -->
+          <p class="text-sm sm:text-base text-slate-200 max-w-2xl leading-relaxed drop-shadow font-normal">
+            Mengoptimalkan Sistem Informasi PNBP yang sudah ada untuk membangun fondasi pengelolaan piutang PNBP yang terstandar, terintegrasi, dan siap terhubung dengan SAKTI.
           </p>
 
           <!-- Single Button on First Fold -->
