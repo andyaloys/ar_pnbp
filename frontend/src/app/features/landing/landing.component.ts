@@ -29,11 +29,9 @@ import { ThemeService } from '../../core/services/theme.service';
         <header class="border-b border-white/10 bg-slate-950/30 backdrop-blur-md sticky top-0 z-40">
           <div class="max-w-6xl mx-auto px-6 h-18 flex items-center justify-between">
             
-            <!-- Logo & Brand (Tanpa kata 2026) -->
+            <!-- Logo & Brand (Logo Resmi KLH) -->
             <div class="flex items-center space-x-3.5">
-              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 shadow-lg shadow-emerald-500/20 font-bold">
-                <i class="pi pi-shield text-lg text-white"></i>
-              </div>
+              <img src="/logo-klh.png" alt="Logo KLH / BPLH" class="w-10 h-10 object-contain drop-shadow-sm flex-shrink-0" />
               <div class="flex flex-col">
                 <span class="text-sm font-extrabold tracking-wider text-white uppercase leading-none">
                   AR Management PNBP
@@ -214,8 +212,8 @@ import { ThemeService } from '../../core/services/theme.service';
       <!-- Footer Resmi di Bagian Paling Bawah -->
       <footer class="border-t border-white/10 py-8 text-center text-xs text-slate-400 bg-slate-950 relative z-10">
         <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="flex items-center space-x-2">
-            <i class="pi pi-shield text-emerald-400 text-sm"></i>
+          <div class="flex items-center space-x-2.5">
+            <img src="/logo-klh.png" alt="Logo KLH" class="w-6 h-6 object-contain" />
             <span class="text-white font-semibold">Kementerian Lingkungan Hidup / Badan Pengendalian Lingkungan Hidup</span>
           </div>
           <p>Biro Perencanaan dan Keuangan Settama &bull; Republik Indonesia</p>

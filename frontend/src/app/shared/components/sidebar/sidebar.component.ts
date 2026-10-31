@@ -14,13 +14,11 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       <!-- Logo / Header -->
       <div class="h-16 flex items-center px-4 border-b border-slate-800 bg-slate-950/80 backdrop-blur">
         <div class="flex items-center gap-3 overflow-hidden cursor-pointer" (click)="toggleCollapse()">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-indigo-600 to-sky-400 flex items-center justify-center shadow-lg shadow-indigo-500/20 flex-shrink-0">
-            <span class="text-white font-bold text-lg tracking-wider">AR</span>
-          </div>
+          <img src="/logo-klh.png" alt="Logo KLH / BPLH" class="w-9 h-9 object-contain flex-shrink-0" />
           @if (!collapsed()) {
             <div class="flex flex-col">
               <span class="font-bold text-sm tracking-wide text-white leading-tight">AR MANAGEMENT</span>
-              <span class="text-[10px] text-amber-400 font-semibold tracking-wider uppercase">PNBP • KLH / BPLH</span>
+              <span class="text-[10px] text-emerald-400 font-semibold tracking-wider uppercase">PNBP &bull; KLH / BPLH</span>
             </div>
           }
         </div>

@@ -23,11 +23,11 @@ import { ThemeService } from '../../core/services/theme.service';
       <div class="w-full max-w-md">
         <!-- Logo & Title Header -->
         <div class="text-center mb-8">
-          <a routerLink="/" class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white shadow-lg shadow-emerald-500/20 mb-4 hover:scale-105 transition-transform">
-            <i class="pi pi-shield text-3xl"></i>
+          <a routerLink="/" class="inline-flex items-center justify-center mb-4 hover:scale-105 transition-transform">
+            <img src="/logo-klh.png" alt="Logo KLH / BPLH" class="w-20 h-20 object-contain drop-shadow-md" />
           </a>
           <h1 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">AR MANAGEMENT PNBP</h1>
-          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Kementerian Lingkungan Hidup / BPLH 2026</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Kementerian Lingkungan Hidup / BPLH</p>
         </div>
 
         <!-- Login Card -->
